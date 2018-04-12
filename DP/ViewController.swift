@@ -9,17 +9,46 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var DP: UIDatePicker!
+    @IBOutlet weak var lbl: UILabel!
+    @IBOutlet weak var lbl2: UILabel!
+    var myTimer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        lbl.text  = formatter.string(from: DP.date)
+        
+        myTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {(myTimer) in
+            self.updateTime()
+        })
+        }
+    
+    func updateTime() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        lbl2.text = formatter.string(from: date)
+        
+        if lbl2.text == lbl.text {
+            view.backgroundColor = UIColor.red
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func CDP(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        lbl.text = formatter.string(from: DP.date)
+    
     }
+    @IBAction func stop(_ sender: Any) {
+        view.backgroundColor = UIColor.white
+    }
+    
 
-
-}
+    }
 
