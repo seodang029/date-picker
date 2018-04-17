@@ -36,6 +36,15 @@ class ViewController: UIViewController {
         
         if lbl2.text == lbl.text {
             view.backgroundColor = UIColor.red
+            
+            let myAlert = UIAlertController(title: "알림", message: "알림을 끄시겠습니까?", preferredStyle: .actionSheet)
+            
+            let okAction = UIAlertAction(title: "확인", style: .default) {
+                (myAcotion: UIAlertAction) -> Void in
+                self.view.backgroundColor = UIColor.white
+            }
+            myAlert.addAction(okAction)
+            present(myAlert, animated: true, completion: nil)
         }
         
     }
@@ -45,10 +54,7 @@ class ViewController: UIViewController {
         lbl.text = formatter.string(from: DP.date)
     
     }
-    @IBAction func stop(_ sender: Any) {
-        view.backgroundColor = UIColor.white
-    }
     
+}
 
-    }
 
